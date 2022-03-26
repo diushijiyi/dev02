@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<!--MyBatis配置-->
+<configuration>
+    <properties resource="jdbc.properties"/>
+    <typeAliases>
+        <typeAlias type="com.example.entity.Student" alias="student"/>
+    </typeAliases>
+    <!--JDBC环境配置、选中默认环境-->
+    <environments default="development">
+        <!--MySql数据库环境配置-->
+        <environment id="development">
+            <!--事务管理-->
+            <transactionManager type="JDBC"/>
+            <!--连接池相关配置-->
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="StudentMapper.xml"/>
+    </mappers>
+</configuration>

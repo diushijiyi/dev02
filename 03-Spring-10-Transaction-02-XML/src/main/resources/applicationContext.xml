@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+    <context:property-placeholder location="jdbc.properties"/>
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+     </bean>
+    
+    <bean id="accountDao" class="com.example.dao.impl.AccountDaoImpl">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <bean id="accountService" class="com.example.service.impl.AccountServiceImpl">
+        <property name="accountDao" ref="accountDao"/>
+    </bean>
+    <bean id="statementService" class="com.example.service.impl.StatementServiceImpl">
+        <property name="accountDao" ref="accountDao"/>
+    </bean>
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <tx:advice id="advice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="transfer" isolation="DEFAULT" read-only="false"/>
+        </tx:attributes>
+    </tx:advice>
+    <aop:config>
+        <aop:pointcut id="pointcut" expression="execution(* com.example.service.impl.*ServiceImpl.*(..))"/>
+        <aop:advisor advice-ref="advice" pointcut-ref="pointcut"/>
+    </aop:config>
+
+
+</beans>
