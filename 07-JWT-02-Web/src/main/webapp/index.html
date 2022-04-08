@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录成功</title>
+    <script src="js/jquery-1.8.3.min.js"></script>
+</head>
+<body>
+    <h1 align="center" style="color:yellowgreen ">欢迎<span id="username"></span>登录成功</h1>
+</body>
+<script type="application/javascript">
+    $(function (){
+        var token=localStorage.getItem("token")
+        if(token===null){
+            alert("当前token不存在或已过期，请重新登录");
+            $(location).attr('href','/login.html');
+        }else {
+            $.ajax({
+                type:"post",
+                url:"/user/verify",
+                data:{"token":token},
+                success:function (resp){
+                   if(!resp.success){
+                       alert(resp.message);
+                       $(location).attr('href','/login.html');
+                   }else {
+                       $("#username").text(resp.data.username);
+                   }
+                }
+            })
+        }
+    })
+</script>
+</html>
