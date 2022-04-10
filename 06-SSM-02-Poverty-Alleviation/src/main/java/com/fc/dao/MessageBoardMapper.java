@@ -34,4 +34,5 @@ public interface MessageBoardMapper {
     int updateByPrimaryKeyWithBLOBs(MessageBoardWithBLOBs record);
 
     int updateByPrimaryKey(MessageBoard record);
+
 }
