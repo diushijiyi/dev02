@@ -42,7 +42,7 @@ public class CollectionServiceImpl implements CollectionService {
         }else {
             PageHelper.startPage(pageNum,pageSize);
             collections= collectionMapper.selectByExample(null);
-            PageInfo<Collection> pageInfo = new PageInfo<>();
+            PageInfo<Collection> pageInfo = new PageInfo<>(collections);
             dataVO=new DataVO<>(pageInfo.getTotal(),collections,pageNum,pageSize);
             resultVO=new ResultVO(200,"收藏表查询成功！！！",true,dataVO);
         }

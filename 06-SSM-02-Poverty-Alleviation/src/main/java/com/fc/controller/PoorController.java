@@ -6,7 +6,6 @@ import com.fc.service.PoorService;
 import com.fc.vo.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 @RestController
 @RequestMapping("poor")
 public class PoorController {

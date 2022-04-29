@@ -7,7 +7,6 @@ import com.fc.service.MessageBoardService;
 import com.fc.vo.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 @RestController
 @RequestMapping("msgboard")
 public class MessageBoardController {

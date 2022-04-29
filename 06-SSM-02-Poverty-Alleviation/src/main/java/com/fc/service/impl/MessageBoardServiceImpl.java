@@ -43,7 +43,7 @@ public class MessageBoardServiceImpl implements MessageBoardService {
         }else {
             PageHelper.startPage(pageNum,pageSize);
             messageBoards= messageBoardMapper.selectByExample(null);
-            PageInfo<MessageBoard> pageInfo = new PageInfo<>();
+            PageInfo<MessageBoard> pageInfo = new PageInfo<>(messageBoards);
             dataVO=new DataVO<>(pageInfo.getTotal(),messageBoards,pageNum,pageSize);
             resultVO=new ResultVO(200,"留言板查询成功！！！",true,dataVO);
         }

@@ -19,36 +19,59 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
     @Override
     public ResultVO getList(Integer pageNum, Integer pageSize, Long id) {
+        // 返回给前端的结果
         ResultVO resultVO;
-        List<User> users;
+
+        // 分页相关的参数
         DataVO<User> userDataVO;
-//        UserExample userExample = new UserExample();
-//        UserExample.Criteria criteria = userExample.createCriteria();
-//        if(user.getUsername()!=null){
-//            criteria.andUsernameLike("%"+user.getUsername()+"%");
-//        }
-        if(id!=null){
-            users=new ArrayList<>();
+
+        // 结果中data对应的用户数组
+        List<User> users;
+
+        // 说明传递了id，那就是findById
+        if (id != null) {
+            users = new ArrayList<>();
+
+            // 查询
             User user = userMapper.selectByPrimaryKey(id);
 
-            if (user==null){
+            // 没有查到用户的情况
+            if (user == null) {
+                userDataVO = new DataVO<>(0L, users, pageNum, pageSize);
 
-                userDataVO=new DataVO<>(0L,users,pageNum,pageSize);
-                resultVO=new ResultVO(4000,"查无此人",false,userDataVO);
-
-            }else {
+                resultVO = new ResultVO(4000, "查无此人!", false, userDataVO);
+            } else {
+                // 查到了用户扔到集合中
                 users.add(user);
-                userDataVO=new DataVO<>(1L,users,pageNum,pageSize);
-                resultVO=new ResultVO(200,"查到了该用户",true,userDataVO);
+
+                userDataVO = new DataVO<>(1L, users, pageNum, pageSize);
+
+                resultVO = new ResultVO(1000, "查到了该用户!", true, userDataVO);
+            }
+        } else {
+            // 开启分页
+            PageHelper.startPage(pageNum, pageSize);
+
+            users = userMapper.selectByExample(null);
+
+            // 如果数据库是空的，一个人都没查到
+            if (users.size() == 0) {
+                userDataVO = new DataVO<>(0L, users, pageNum, pageSize);
+
+                resultVO = new ResultVO(4100, "没有用户!!!", false, userDataVO);
+                // 查到了
+            } else {
+                // 封装pageInfo，为了获取总数据量
+                PageInfo<User> pageInfo = new PageInfo<>(users);
+
+                userDataVO = new DataVO<>(pageInfo.getTotal(), users, pageNum, pageSize);
+
+                resultVO = new ResultVO(1100, "用户查询成功！！！!", true, userDataVO);
+
             }
 
-        }else {
-            PageHelper.startPage(pageNum,pageSize);
-            users= userMapper.selectByExample(null);
-            PageInfo<User> pageInfo = new PageInfo<>();
-            userDataVO=new DataVO<>(pageInfo.getTotal(),users,pageNum,pageSize);
-            resultVO=new ResultVO(200,"用户查询成功！！！",true,userDataVO);
         }
+
         return resultVO;
     }
 

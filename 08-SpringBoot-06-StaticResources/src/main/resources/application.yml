@@ -1,0 +1,9 @@
+spring:
+  #������Դ�µľ�̬��Դ·��,�൱��locations
+  web:
+    resources:
+      static-locations: classpath:/hi/
+  #��̬��Դ��·������ǰ׺���൱��mapping
+#  mvc:
+#    static-path-pattern: /hello/**
+

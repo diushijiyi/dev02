@@ -1,6 +1,7 @@
 package com.fc.entity;
 
 public class PoorWithBLOBs extends Poor {
+    
     private String condition;
 
     private String introduce;

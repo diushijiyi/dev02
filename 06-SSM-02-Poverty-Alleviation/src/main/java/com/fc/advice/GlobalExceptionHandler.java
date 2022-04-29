@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @ControllerAdvice
-public class GlobalEXceptionHandler {
+public class GlobalExceptionHandler {
     @ExceptionHandler(value = DuplicateKeyException.class)
     @ResponseBody
     public ResultVO duplicateKeyException(DuplicateKeyException e){

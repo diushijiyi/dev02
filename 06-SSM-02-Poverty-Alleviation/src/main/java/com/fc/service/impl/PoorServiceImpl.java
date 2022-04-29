@@ -38,31 +38,31 @@ public class PoorServiceImpl implements PoorService {
     @Override
     public ResultVO getList(Integer pageNum, Integer pageSize, Long id) {
         ResultVO resultVO;
-        List<Poor> poors;
-        DataVO<Poor> dataVO;
+        List<PoorWithBLOBs> poor;
+        DataVO<PoorWithBLOBs> dataVO;
         if(id!=null){
-            poors=new ArrayList<>();
-            Poor poor = poorMapper.selectByPrimaryKey(id);
+            poor=new ArrayList<>();
+            PoorWithBLOBs poorWithBLOBs = poorMapper.selectByPrimaryKey(id);
 
-            if (poor==null){
+            if (poorWithBLOBs==null){
 
-                dataVO=new DataVO<>(0L,poors,pageNum,pageSize);
+                dataVO=new DataVO<>(0L,poor,pageNum,pageSize);
                 resultVO=new ResultVO(4000,"没有这条贫困户信息",false,dataVO);
 
             }else {
-                click(poor.getId(),null);
-                poor.setClickNum(poor.getClickNum()+1);
-                poors.add(poor);
-                dataVO=new DataVO<>(1L,poors,pageNum,pageSize);
+                click(poorWithBLOBs.getId(),null);
+                poorWithBLOBs.setClickNum(poorWithBLOBs.getClickNum()+1);
+                poor.add(poorWithBLOBs);
+                dataVO=new DataVO<>(1L,poor,pageNum,pageSize);
                 resultVO=new ResultVO(200,"查到了该信息",true,dataVO);
             }
 
         }else {
             PageHelper.startPage(pageNum,pageSize);
-            poors= poorMapper.selectByExample(null);
+            poor= poorMapper.selectByExampleWithBLOBs(null);
 
             PageInfo<Poor> pageInfo = new PageInfo<>();
-            dataVO=new DataVO<>(pageInfo.getTotal(),poors,pageNum,pageSize);
+            dataVO=new DataVO<>(pageInfo.getTotal(),poor,pageNum,pageSize);
             resultVO=new ResultVO(200,"贫困户信息查询成功！！！",true,dataVO);
         }
         return resultVO;
