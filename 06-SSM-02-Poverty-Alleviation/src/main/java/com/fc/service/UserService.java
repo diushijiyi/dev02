@@ -1,6 +1,7 @@
 package com.fc.service;
 
 import com.fc.entity.User;
+import com.fc.entity.User;
 import com.fc.vo.ResultVO;
 
 public interface UserService {
@@ -11,4 +12,6 @@ public interface UserService {
     ResultVO update(User user);
 
     ResultVO delete(Long id);
+
+    ResultVO login(String username, String password);
 }

@@ -10,6 +10,11 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     @Autowired
     private UserService userService;
+    @PostMapping("login")
+    public ResultVO login(@RequestParam("username") String username,
+                          @RequestParam("password") String password){
+        return userService.login(username,password);
+    }
     @RequestMapping("getList")
     public ResultVO getList(@RequestParam(value = "pageNum",defaultValue = "1") Integer pageNum,
                             @RequestParam(value = "pageSize",defaultValue = "3")Integer pageSize,
