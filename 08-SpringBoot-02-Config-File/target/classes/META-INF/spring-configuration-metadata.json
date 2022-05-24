@@ -1,0 +1,87 @@
+{
+  "groups": [
+    {
+      "name": "person",
+      "type": "com.example.entity.Person",
+      "sourceType": "com.example.entity.Person"
+    },
+    {
+      "name": "student",
+      "type": "com.example.entity.Student",
+      "sourceType": "com.example.entity.Student"
+    },
+    {
+      "name": "student.car",
+      "type": "com.example.entity.Car",
+      "sourceType": "com.example.entity.Car"
+    }
+  ],
+  "properties": [
+    {
+      "name": "person.username",
+      "type": "java.lang.String",
+      "sourceType": "com.example.entity.Person"
+    },
+    {
+      "name": "student.age",
+      "type": "java.lang.Integer",
+      "sourceType": "com.example.entity.Student"
+    },
+    {
+      "name": "student.birthday",
+      "type": "java.util.Date",
+      "sourceType": "com.example.entity.Student"
+    },
+    {
+      "name": "student.car",
+      "type": "com.example.entity.Car",
+      "sourceType": "com.example.entity.Student"
+    },
+    {
+      "name": "student.car.brand",
+      "type": "java.lang.String",
+      "sourceType": "com.example.entity.Car"
+    },
+    {
+      "name": "student.car.color",
+      "type": "java.lang.String",
+      "sourceType": "com.example.entity.Car"
+    },
+    {
+      "name": "student.food",
+      "type": "java.util.List<java.lang.String>",
+      "sourceType": "com.example.entity.Student"
+    },
+    {
+      "name": "student.gender",
+      "type": "java.lang.String",
+      "sourceType": "com.example.entity.Student"
+    },
+    {
+      "name": "student.hobby",
+      "type": "java.lang.String[]",
+      "sourceType": "com.example.entity.Student"
+    },
+    {
+      "name": "student.info",
+      "type": "java.lang.String",
+      "sourceType": "com.example.entity.Student"
+    },
+    {
+      "name": "student.married",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.example.entity.Student"
+    },
+    {
+      "name": "student.name",
+      "type": "java.lang.String",
+      "sourceType": "com.example.entity.Student"
+    },
+    {
+      "name": "student.score",
+      "type": "java.util.Map<java.lang.String,java.lang.Object>",
+      "sourceType": "com.example.entity.Student"
+    }
+  ],
+  "hints": []
+}

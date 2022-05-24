@@ -1,0 +1,27 @@
+server:
+  port: 8848
+  servlet:
+    context-path: /yml
+
+student:
+  name: "赵丽颖\r\n颖宝"
+  age: 34
+  gender: ‘女’
+  married: false
+  birthday: 1987/10/16 12:12:12
+  info: 女神
+  hobby: ["唱","演戏","跳"]
+  food:
+    - 豆腐包子
+    - 豆沙包
+    - 土豆饼
+    - 米线
+    - 小笼包
+    - 粥
+  score: {"Java": 100, "MySQL": 5, "Html": 110}   #Map
+  car:
+    brand: BYD
+    color: 白
+
+person:
+    username: "玛卡巴卡"

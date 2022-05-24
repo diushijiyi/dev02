@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: com.fc.AssertTest
+-------------------------------------------------------------------------------
+Tests run: 8, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 4.029 s <<< FAILURE! - in com.fc.AssertTest
+testAssertTimeout  Time elapsed: 4.008 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: 太慢了 ==> execution exceeded timeout of 3000 ms by 1007 ms
+	at com.fc.AssertTest.testAssertTimeout(AssertTest.java:73)
+
+testFail  Time elapsed: 0.002 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: 失败了
+	at com.fc.AssertTest.testFail(AssertTest.java:83)
+

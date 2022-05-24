@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace对应所需实现的接口全限定名-->
+<mapper namespace="com.example.dao.StudentDao">
+    <cache/>
+
+    <select id="findById" parameterType="Integer" resultType="com.example.entity.Student">
+        select *
+        from student where id=#{id};
+    </select>
+    <update id="update">
+        update student
+        set info=#{info} where id=#{id}
+    </update>
+</mapper>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>测试th:text和th:utext</title>
+</head>
+<body>
+<!--原样输出-->
+<span th:text="${value}"></span>
+<span th:text="${character}"></span>
+
+<!--支持转义html标签-->
+<span th:utext="${value}"></span>
+<!--支持转义html标签-->
+<span th:utext="${character}"></span>
+</body>
+</html>

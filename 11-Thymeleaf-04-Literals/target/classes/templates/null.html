@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>测试null字面量</title>
+</head>
+<body>
+    <h1 id="h1" th:text="null">null字面量将不会显示内容到页面上，但是标签还在</h1>
+    <h1 th:text="${value}">value:不显示</h1>
+    <h1 th:if="${value} eq null">会显示~</h1>
+    <h1 th:if="${string} eq ('')">会显示~</h1>
+    <h1 th:if="${string} eq ''">会显示~</h1>
+    <h1 th:if="${value} eq ''">不会显示</h1>
+    <h1 th:text="${string}">空字符串也不会显示</h1>
+</body>
+</html>

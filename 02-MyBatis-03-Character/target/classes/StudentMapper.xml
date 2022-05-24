@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace对应所需实现的接口全限定名-->
+<mapper namespace="com.example.dao.StudentDao">
+   <select id="findByLessThanAge" parameterType="Integer" resultType="com.example.entity.Student">
+       select * from student where age &lt;= #{age};
+   </select>
+    <select id="findGreaterThanAge" parameterType="Integer" resultType="com.example.entity.Student">
+        select * from student where age <![CDATA[>]]> #{age};
+    </select>
+
+</mapper>

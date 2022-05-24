@@ -1,0 +1,7 @@
+-------------------------------------------------------------------------------
+Test set: com.fc.ApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 9, Failures: 0, Errors: 1, Skipped: 1, Time elapsed: 3.919 s <<< FAILURE! - in com.fc.ApplicationTests
+testTimeout  Time elapsed: 2.188 s  <<< ERROR!
+java.util.concurrent.TimeoutException: testTimeout() timed out after 2 seconds
+
