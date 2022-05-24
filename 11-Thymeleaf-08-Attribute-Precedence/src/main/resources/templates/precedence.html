@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>测试属性优先级</title>
+</head>
+<body>
+    <ol>
+        <li th:if="false" th:each="user:${users}" th:text="${user.username}"></li>
+    </ol>
+    <label>
+        <select>
+            <option th:selected="${location.value} eq ${selected}" th:value="${location.key}" th:text="${location.value}" th:each="location:${locations}">1</option>
+        </select>
+    </label>
+</body>
+</html>

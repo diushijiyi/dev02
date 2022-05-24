@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>测试th:fragment属性</title>
+</head>
+<body>
+    <div th:fragment="current">
+        <h1 align="center">当前页面中声明片段</h1>
+    </div>
+<!--省略写法-->
+    <div th:insert="header.html::header"></div>
+<!--    片段表达式    -->
+<div th:insert="~{header.html::header}"></div>
+<h1>main</h1>
+    <div th:replace="common.html::replace">123</div>
+    <div th:insert="common.html::replace">123</div>
+    <div th:include="common.html::replace">123</div>
+
+    <div th:insert="::current"></div>
+    <div th:insert="~{::current}"></div>
+    <h1>main</h1>
+    <div th:insert="argument.html::welcome('易烊千玺','王者峡谷')"></div>
+    <div th:insert="argument.html::welcome('迪丽热巴','艾欧尼亚')"></div>
+<!--省略写法-->
+<div th:insert="footer.html::footer"></div>
+<!--    片段表达式    -->
+<div th:insert="~{footer.html::footer}"></div>
+
+</body>
+</html>

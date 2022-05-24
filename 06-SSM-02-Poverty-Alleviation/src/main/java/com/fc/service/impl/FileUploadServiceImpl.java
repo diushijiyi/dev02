@@ -18,6 +18,8 @@ public class FileUploadServiceImpl implements FileUploadService {
     @Override
     public ResultVO upload(MultipartFile file, String type) {
         // 准备路径
+//        String path = "E:\\Software\\tomcat\\apache-tomcat-8.5.37\\webapps\\upload\\Poverty-Alleviation\\" + type;
+
         String path = "D:\\server\\apache-tomcat-8.5.37\\webapps\\upload\\Poverty-Alleviation\\" + type;
         File pathFile=new File(path);
 //        如果文件夹路径不存在

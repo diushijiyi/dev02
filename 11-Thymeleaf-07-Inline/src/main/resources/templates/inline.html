@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>测试内联表达式</title>
+    <style>
+        .[[${class}]]{
+            color: [[${color}]];
+            text-align: [[${align}]];
+        }
+    </style>
+</head>
+<body>
+<h1 class="class1">测试css内联</h1>
+<h1 class="class2">测试css内联</h1>
+    <p>[[${html}]]</p>
+    <p th:text="${html}"></p>
+    <p>[(${html})]</p>
+    <p th:utext="${html}"></p>
+<!--禁用内联表达式-->
+    <p th:inline="none">[[${html}]]</p>
+</body>
+<script>
+    var name='[[${name}]]';
+    var age='[[${age}]]';
+    var gender='[[${gender}]]';
+    alert(name+':'+age+':'+gender);
+</script>
+</html>

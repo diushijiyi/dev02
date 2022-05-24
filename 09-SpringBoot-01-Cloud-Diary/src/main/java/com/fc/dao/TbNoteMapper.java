@@ -41,6 +41,8 @@ public interface TbNoteMapper {
     List<TbNote> findNoteByUserId(@Param("userId") Integer userId, @Param("typeId") Integer typeId, @Param("title") String title,@Param("date") String date);
 //    根据用户id获取分类的日期
     List<NoteVO> findCountByDate(@Param("userId")Integer userId);
-//    根据用户id获取分类的类别
-    List<NoteVO> findCountByType(@Param("typeId")Integer typeId);
-}
+    // 根据用户id获取分类的类别
+    List<NoteVO> findCountByType(Integer userId);
+
+    // 根据id获取对应的日记对象
+    NoteVO findById(Integer id);}

@@ -5,10 +5,8 @@ import com.fc.service.UserService;
 import com.fc.vo.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.Cookie;
@@ -47,6 +45,39 @@ public class UserController {
             mv.setViewName("forward:/index/page");
 
         }
+        return mv;
+    }
+    @GetMapping("logout")
+    public ModelAndView logout(HttpSession session,HttpServletResponse response,ModelAndView mv){
+        Cookie cookie = new Cookie("JSESSIONID", null);
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+        session.removeAttribute("user");
+        session.invalidate();
+        mv.setViewName("redirect:/login.jsp");
+        return mv;
+    }
+    @GetMapping("userCenter")
+    public ModelAndView userCenter(ModelAndView mv){
+
+        mv.addObject("menu_page","user");
+        mv.addObject("changePage","/user/info.jsp");
+        mv.setViewName("forward:/index.jsp");
+
+        return mv;
+    }
+    @GetMapping("checkNick")
+    @ResponseBody
+    public Integer checkNick(String nick){
+        return userService.checkNick(nick);
+    }
+    @PostMapping("update")
+    public ModelAndView update(TbUser user, MultipartFile img,ModelAndView mv,HttpSession session){
+        ResultVO vo=userService.update(img,user);
+        if(vo.getCode()==1){
+            session.setAttribute("user",vo.getData());
+        }
+        mv.setViewName("redirect:userCenter");
         return mv;
     }
 }
